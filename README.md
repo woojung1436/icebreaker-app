@@ -54,6 +54,21 @@ npm run dev
 - API 키가 없으면 이 패널에는 안내 문구만 표시되고, 나머지 기능(카드 뽑기/조 편성 등)은 평소대로 동작합니다.
 - 요약에 사용되는 답변 내용은 Anthropic API로 전송됩니다 — 민감한 정보를 다루는 조직이라면 참가자에게 사전 안내하세요.
 
+## 클라우드에 배포하기 (Render)
+
+와이파이/로컬 네트워크에 의존하지 않고 어디서든 접속 가능한 고정 URL로 쓰고 싶다면 Render에 배포하세요. 저장소 루트의 `render.yaml`이 서버(Node 웹 서비스)와 클라이언트(정적 사이트) 두 개를 한 번에 정의해둔 "Blueprint"입니다.
+
+1. **GitHub에 코드 올리기** — 이 프로젝트는 이미 git 저장소로 초기화되어 있습니다. GitHub Desktop(무료, 설치형 GUI) 같은 도구로 로그인 후 "Publish repository"만 누르면 새 저장소가 만들어지고 코드가 올라갑니다.
+2. **Render 가입** — [render.com](https://render.com) 에서 Google 계정 등으로 가입 (신용카드 불필요).
+3. **Blueprint로 배포** — Render 대시보드에서 New + → Blueprint 선택 → 방금 올린 GitHub 저장소 연결 → `render.yaml`을 자동 인식해서 `icebreaker-server`(웹 서비스)와 `icebreaker-client`(정적 사이트) 두 서비스가 한 번에 생성됩니다.
+4. **환경변수 설정**
+   - `icebreaker-server` 서비스 → Environment → `ANTHROPIC_API_KEY` 값 입력
+   - `icebreaker-server` 배포가 끝나면 URL이 생깁니다 (예: `https://icebreaker-server.onrender.com`)
+   - `icebreaker-client` 서비스 → Environment → `VITE_SERVER_URL`에 위 서버 URL 입력 → 저장하면 클라이언트가 재빌드되며 반영됩니다
+5. **접속 확인** — `icebreaker-client`의 URL(예: `https://icebreaker-client.onrender.com`)이 실제 서비스 주소입니다. `/host`를 붙여서 진행자 화면을 열면 됩니다.
+
+**무료 플랜 주의사항**: Render 무료 웹 서비스(서버)는 15분간 요청이 없으면 슬립 상태가 되고, 다음 요청 때 다시 깨어나는 데 30~60초가 걸립니다. 실제 교육 세션 **시작 5~10분 전에 서버 URL(`/health`)을 한 번 미리 열어서 깨워두세요.** 자주 쓸 예정이라면 Render의 유료 Starter 플랜(월 $7)으로 올리면 이 지연이 없어집니다.
+
 ## 진행 팁
 
 - 진행자 화면의 "덱 리셋 / 새 라운드" 버튼을 누르면 모든 참가자의 카드와 답변이 초기화되어 다음 세션에 재사용할 수 있습니다 (조 배정은 유지됩니다).
