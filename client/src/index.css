@@ -1,0 +1,102 @@
+:root {
+  --color-bg: #0f1222;
+  --color-bg-soft: #171b34;
+  --color-surface: #1f2445;
+  --color-primary: #7c5cff;
+  --color-primary-light: #a78bfa;
+  --color-accent: #ffb648;
+  --color-text: #f4f4fb;
+  --color-text-dim: #a6acce;
+  --color-success: #4ade80;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, var(--color-bg-soft), var(--color-bg));
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: white;
+  box-shadow: 0 8px 24px -8px rgba(124, 92, 255, 0.7);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-danger {
+  background: rgba(255, 87, 87, 0.15);
+  color: #ff8080;
+  border: 1px solid rgba(255, 87, 87, 0.35);
+}
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text);
+  font-size: 1.05rem;
+}
+
+.input:focus {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+.text-dim {
+  color: var(--color-text-dim);
+}
